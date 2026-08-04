@@ -1,0 +1,16 @@
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Local notes and scratch files
+*.log
+scratch/
+
+# Tooling state
+.claude/
+
+# Kept locally, not published: image source/licence unverified
+images/rug.png
