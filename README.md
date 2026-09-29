@@ -1,6 +1,6 @@
 # Vizbl integration playground
 
-Five self-contained demo storefronts, one per Vizbl product. Each page is plain
+Six self-contained demo storefronts: one per Vizbl product, plus a second Wall Art store for ad shoots. Each page is plain
 HTML + CSS — the kind of page a client already has — with two clearly marked
 spots for pasting the Vizbl integration code.
 
@@ -12,6 +12,7 @@ spots for pasting the Vizbl integration code.
 | `rugs.html` | LOOM & FIELD — rugs | Antique Oushak rug | Rugs |
 | `flooring.html` | FLOORWERK — flooring | Heritage Oak parquet | Flooring |
 | `ai-tryon.html` | ODE Atelier — womenswear | Aurélie tulle gown | AI Try-On |
+| `spilled-light.html` | STILLE — art editions | Spilled Light print, 105 × 90 cm by default | Wall Art (ad shoot) |
 
 ## How to use
 
@@ -49,6 +50,7 @@ Then open <http://localhost:8000>.
 | `images/rug-oushak.jpg` | [Antique Turkish Oushak Carpet](https://commons.wikimedia.org/wiki/File:Antique_Turkish_Oushak_Carpet.jpg), via Wikimedia Commons | Public domain |
 | `images/oak-parquet.jpg` | [Parquet floor wood texture](https://commons.wikimedia.org/wiki/File:Parquet_floor_wood_texture.jpg), via Wikimedia Commons | Public domain |
 | `images/sofa-living.jpg` | Chair render | Supplied by repo owner |
+| `images/spilled-light.jpg`, `images/spilled-light-1600.jpg` | Artwork "Spilled Light", exported from `images/1.png` | Supplied by repo owner |
 | `images/dress.jpg` | ["Wedding Dress - Lan Chi"](https://www.flickr.com/photos/53579370@N07/8035928857) by [Mac Vincente](https://www.flickr.com/photos/53579370@N07) | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
 
 The CC BY 2.0 credit is also shown on `ai-tryon.html` itself, under the product photo.

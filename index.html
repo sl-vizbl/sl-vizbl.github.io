@@ -19,13 +19,13 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
 
-.hero{padding:64px 0 40px}
+.hero{padding-top:64px;padding-bottom:40px}
 .hero .kicker{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}
 .hero h1{font:400 44px/1.15 var(--serif);margin:10px 0 14px}
 .hero p{color:var(--muted);max-width:64ch}
 .hero code{background:#f0ece5;border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:13px}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;padding:12px 0 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;padding-top:12px;padding-bottom:60px}
 .card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column}
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(28,26,23,.1)}
 .card .thumb{aspect-ratio:16/10;overflow:hidden}
@@ -41,8 +41,9 @@ img{max-width:100%;display:block}
 .c-terra .tag,.c-terra .go{color:#a75a3c}
 .c-oak .tag,.c-oak .go{color:#7a5230}
 .c-rose .tag,.c-rose .go{color:#a86178}
+.c-violet .tag,.c-violet .go{color:#8a2be2}
 
-.howto{border-top:1px solid var(--line);padding:40px 0 60px}
+.howto{border-top:1px solid var(--line);padding-top:40px;padding-bottom:60px}
 .howto h2{font:400 26px var(--serif);margin-bottom:14px}
 .howto ol{margin:0 0 18px 20px;color:var(--muted);max-width:70ch}
 .howto li{margin-bottom:8px}
@@ -52,14 +53,24 @@ img{max-width:100%;display:block}
 .docs a:hover{color:var(--ink);border-color:var(--muted)}
 
 footer{border-top:1px solid var(--line)}
-.frow{padding:24px 0;font-size:13px;color:var(--muted)}
+.frow{padding-top:24px;padding-bottom:24px;font-size:13px;color:var(--muted)}
+
+@media (max-width:860px){
+  .wrap{padding:0 16px}
+  .hero{padding-top:40px;padding-bottom:26px}
+  .hero h1{font-size:31px}
+  .grid{gap:16px;padding-top:8px;padding-bottom:40px}
+  .howto{padding-top:30px;padding-bottom:44px}
+  .howto h2{font-size:22px}
+  .howto ol{margin-left:18px}
+}
 </style>
 </head>
 <body>
 
 <div class="wrap hero">
   <div class="kicker">Vizbl · Integration Playground</div>
-  <h1>Five demo storefronts,<br>one integration each</h1>
+  <h1>Six demo storefronts,<br>one integration each</h1>
   <p>Each store is a plain, self-contained HTML page — the kind any client already has.
   Open a store, then paste the Vizbl code into the two spots marked
   <code>&#9660;&#9660;&#9660; VIZBL &hellip; STEP 1 / STEP 2</code> in the source, and the widget goes live.</p>
@@ -112,6 +123,16 @@ footer{border-top:1px solid var(--line)}
       <span class="tag">AI Try-On</span>
       <h2>ODE Atelier — Womenswear</h2>
       <p>Aurélie Tulle Ball Gown. Paste the ai-try-on script + trigger with product name, image and URL.</p>
+      <span class="go">Open store →</span>
+    </div>
+  </a>
+
+  <a class="card c-violet" href="spilled-light.html">
+    <div class="thumb"><img src="images/spilled-light-1600.jpg" alt="Spilled Light, graphite still life with a violet pour"></div>
+    <div class="body">
+      <span class="tag">Wall Art · ad shoot</span>
+      <h2>STILLE — Art Editions</h2>
+      <p>Spilled Light by Mira Voss. Wall Art trigger preset to 105 × 90 cm, the size follows the picker on the page.</p>
       <span class="go">Open store →</span>
     </div>
   </a>
