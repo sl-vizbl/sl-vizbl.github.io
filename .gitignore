@@ -10,3 +10,6 @@ desktop.ini
 
 # Previous project (demo storefronts), kept locally only
 _garage/
+
+# Source exports, published as JPG in posts/
+assets/1.png
