@@ -5,15 +5,8 @@ desktop.ini
 .vscode/
 .idea/
 
-# Local notes and scratch files
-*.log
-scratch/
-
 # Tooling state
 .claude/
 
-# Kept locally, not published: image source/licence unverified
-images/rug.png
-
-# Source for spilled-light*.jpg (6.6 MB PNG), kept locally
-images/1.png
+# Previous project (demo storefronts), kept locally only
+_garage/
