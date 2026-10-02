@@ -18,6 +18,7 @@
 
 <!-- Vizbl widget scripts: one per integration type used in the feed -->
 <script defer src="https://cdn.neurodyn.ai/@neurodyn/room-viewer/dist/room-viewer.embed.min.js"></script>
+<script defer src="https://cdn.neurodyn.ai/@neurodyn/ai-try-on/dist/ai-try-on.embed.min.js"></script>
 </head>
 <body>
 
@@ -43,7 +44,7 @@
 
   <div class="merchant">
     <div><b>Have an online store? Add this try-on to it.</b><span>Shoppers see how your product looks in their home before they buy.</span></div>
-    <a class="btn btn-light" href="https://connect.vizbl.com/register">Start free</a>
+    <a class="btn btn-light" href="https://vizbl.com/apps">Start free</a>
   </div>
 </section>
 
@@ -64,6 +65,19 @@
 <main class="wrap feed-wrap">
   <div class="feed">
 
+    <button class="post" id="mary-lincoln-dress" type="button"
+      data-neurodyn-ai-try-on-dialog
+      data-neurodyn-ai-try-on-product-type="full-body"
+      data-neurodyn-ai-try-on-product-name="Mary Lincoln's purple velvet dress"
+      data-neurodyn-ai-try-on-product-image-src="https://ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065"
+      data-neurodyn-ai-try-on-product-url=""
+      data-neurodyn-ai-try-on-language="en"
+      data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3"
+      aria-label="Try on a digital version of Mary Lincoln's purple velvet dress">
+      <img src="assets/2.png" alt="Mary Lincoln's purple velvet dress, preserved at the Smithsonian">
+      <span class="try"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7.5" y="7.5" width="9" height="9" rx="1"/></svg>Try on this dress</span>
+    </button>
+
     <button class="post" type="button"
       data-neurodyn-room-viewer-dialog
       data-neurodyn-room-viewer-type="rugs"
@@ -78,7 +92,8 @@
       <span class="try"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7.5" y="7.5" width="9" height="9" rx="1"/></svg>Try this carpet</span>
     </button>
 
-    <div class="soon" aria-hidden="true">Next story soon</div>
+
+
     <div class="soon" aria-hidden="true">Next story soon</div>
 
   </div>
@@ -94,6 +109,9 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
+// Keep the product link valid on localhost and after deployment.
+document.getElementById('mary-lincoln-dress').setAttribute('data-neurodyn-ai-try-on-product-url', window.location.href);
+
 // Try-ons that are not published yet: tell the visitor instead of doing nothing.
 const toast = document.getElementById('toast');
 let hideTimer;
