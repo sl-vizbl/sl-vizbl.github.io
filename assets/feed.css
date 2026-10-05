@@ -1,5 +1,10 @@
 /* Visual language follows the Instagram posts: Inter, black on white,
    small grey captions in a side column, dark gradient for the closing note. */
+/* Inter is hosted here, not on Google Fonts: Google Fonts is unreachable from some networks
+   and its stylesheet blocks rendering until it times out. */
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;
+  src:url(fonts/InterVariable.woff2) format('woff2')}
+
 :root{
   --ink:#111111;
   --text:#1f1f1f;
