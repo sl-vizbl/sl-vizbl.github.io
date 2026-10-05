@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Debug — Vizbl feed</title>
+<title>Отладка — лента Vizbl</title>
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="preload" href="../assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/feed.css">
@@ -24,6 +24,7 @@
   table{border-collapse:collapse;font-size:13px;width:100%;max-width:760px}
   th,td{text-align:left;border-bottom:1px solid var(--line);padding:7px 10px 7px 0;vertical-align:top}
   th{font-weight:600;color:var(--muted)}
+  td:first-child{white-space:nowrap}
   code,pre{font-family:ui-monospace,SFMono-Regular,'JetBrains Mono',Menlo,Consolas,monospace;font-size:12.5px}
   code{background:#f4f4f4;border-radius:4px;padding:1px 5px}
   pre{background:#f6f6f6;border:1px solid var(--line);border-radius:8px;padding:14px;overflow-x:auto;line-height:1.45;max-width:760px}
@@ -48,51 +49,51 @@
     <a href="../"><img src="../assets/vizbl-logo.svg" alt="Vizbl" width="386" height="116"></a>
     <a class="back" href="../">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-      Back to the feed
+      В ленту
     </a>
   </div>
 </header>
 
 <main class="wrap">
   <div class="intro">
-    <div class="caption">Internal page<span>Not linked from the feed, not indexed</span></div>
+    <div class="caption">Внутренняя страница<span>Ссылки из ленты нет, поисковики не индексируют</span></div>
     <div>
-      <h1>Debug</h1>
-      <p class="lede">Integrations that misbehave on the feed. Each case keeps the exact trigger, so it can be reproduced here.</p>
+      <h1>Отладка</h1>
+      <p class="lede">Интеграции, которые сбоят в&nbsp;ленте. У&nbsp;каждого случая есть та&nbsp;же кнопка, что стояла на&nbsp;главной, чтобы ошибку можно было воспроизвести прямо здесь.</p>
     </div>
   </div>
 
   <!-- ─────────────────────────────────────────────── -->
   <section class="case" id="icebergs-ar-rotation">
     <div class="case-head">
-      <h2>The Icebergs: lies flat in AR</h2>
-      <span class="status open">Open</span>
+      <h2>«Айсберги»: в&nbsp;AR картина лежит</h2>
+      <span class="status open">Открыт</span>
     </div>
-    <div class="meta">Wall Art · reported 5 Oct 2026 · hidden from the feed until fixed</div>
+    <div class="meta">Настенный арт · 5&nbsp;октября 2026 · убрана с&nbsp;главной до&nbsp;исправления</div>
 
-    <h3>What happens</h3>
-    <p>In AR the painting is rotated 90° around the X axis: it lies flat, like a tabletop, instead of hanging on the wall. The 2D widget (scenes, room photo) shows it correctly.</p>
+    <h3>Что происходит</h3>
+    <p>В&nbsp;AR картина повёрнута на&nbsp;90° по&nbsp;оси X: лежит горизонтально, как столешница, а&nbsp;не&nbsp;висит на&nbsp;стене. В&nbsp;2D-виджете (сцены, фото своей комнаты) всё правильно.</p>
 
-    <h3>Where</h3>
+    <h3>Где воспроизводится</h3>
     <ul>
-      <li>Device and OS: <i>to add</i></li>
-      <li>AR viewer (iOS Quick Look or Android Scene Viewer): <i>to add</i></li>
-      <li>Both sizes or one of them: <i>to add</i></li>
+      <li>Устройство и&nbsp;ОС: <i>дописать</i></li>
+      <li>AR-просмотр (iOS Quick Look или Android Scene Viewer): <i>дописать</i></li>
+      <li>Оба размера или один: <i>дописать</i></li>
     </ul>
 
-    <h3>What the page sends</h3>
+    <h3>Что передаёт страница</h3>
     <table>
-      <tr><th>Attribute</th><th>Original size</th><th>Print</th></tr>
+      <tr><th>Атрибут</th><th>Оригинальный размер</th><th>Репродукция</th></tr>
       <tr><td><code>-type</code></td><td><code>wallart</code></td><td><code>wallart</code></td></tr>
-      <tr><td><code>-width</code></td><td><code>2.858</code> (112½ in)</td><td><code>1.067</code> (42 in)</td></tr>
-      <tr><td><code>-height</code></td><td><code>1.638</code> (64½ in)</td><td><code>0.61</code> (24 in)</td></tr>
-      <tr><td>units</td><td colspan="2">metres, the default; <code>-dimension-unit</code> is not sent</td></tr>
-      <tr><td><code>-src</code></td><td colspan="2"><a class="u" href="../try/icebergs.jpg">try/icebergs.jpg</a>, 2800 × 1568 px, landscape, no frame (made absolute by the page script)</td></tr>
+      <tr><td><code>-width</code></td><td><code>2.858</code> (285,8&nbsp;см, 112½&nbsp;дюйма)</td><td><code>1.067</code> (106,7&nbsp;см, 42&nbsp;дюйма)</td></tr>
+      <tr><td><code>-height</code></td><td><code>1.638</code> (163,8&nbsp;см, 64½&nbsp;дюйма)</td><td><code>0.61</code> (61&nbsp;см, 24&nbsp;дюйма)</td></tr>
+      <tr><td>единицы</td><td colspan="2">метры, единица по&nbsp;умолчанию; <code>-dimension-unit</code> не&nbsp;передаётся</td></tr>
+      <tr><td><code>-src</code></td><td colspan="2"><a class="u" href="../try/icebergs.jpg">try/icebergs.jpg</a>, 2800&nbsp;× 1568&nbsp;px, горизонтальная, без рамы (скрипт страницы превращает путь в&nbsp;абсолютную ссылку)</td></tr>
       <tr><td><code>-api-key</code></td><td colspan="2"><code>pk_live_cx0D…bL-c</code></td></tr>
     </table>
-    <p class="meta" style="margin-top:8px">Nothing on the page sets orientation or placement: wall vs. floor is decided when the widget launches AR.</p>
+    <p class="meta" style="margin-top:8px">Ориентацию и&nbsp;размещение страница не&nbsp;задаёт: стену или пол выбирает виджет, когда запускает AR.</p>
 
-    <h3>Reproduce</h3>
+    <h3>Воспроизвести</h3>
     <div class="triggers">
       <button class="trig" type="button"
         data-neurodyn-room-viewer-dialog
@@ -102,7 +103,7 @@
         data-neurodyn-room-viewer-width="2.858"
         data-neurodyn-room-viewer-height="1.638"
         data-neurodyn-room-viewer-language="en"
-        data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">Original size</button>
+        data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">Оригинальный размер</button>
       <button class="trig alt" type="button"
         data-neurodyn-room-viewer-dialog
         data-neurodyn-room-viewer-type="wallart"
@@ -111,11 +112,11 @@
         data-neurodyn-room-viewer-width="1.067"
         data-neurodyn-room-viewer-height="0.61"
         data-neurodyn-room-viewer-language="en"
-        data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">Print, 24 × 42 in</button>
+        data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">Репродукция 24&nbsp;× 42&nbsp;дюйма</button>
     </div>
-    <p class="meta" style="margin-top:8px">Open on a phone, then “View in place”.</p>
+    <p class="meta" style="margin-top:8px">Открыть с&nbsp;телефона и&nbsp;нажать «View in place».</p>
 
-    <h3>Trigger code (original size)</h3>
+    <h3>Код кнопки (оригинальный размер)</h3>
 <pre>&lt;button type="button"
   data-neurodyn-room-viewer-dialog
   data-neurodyn-room-viewer-type="wallart"
@@ -132,18 +133,18 @@
   <!-- ─────────────────────────────────────────────── -->
   <section class="case" id="dress-remote-image-loop">
     <div class="case-head">
-      <h2>Mary Lincoln's dress: remote image re-requested endlessly</h2>
-      <span class="status workaround">Workaround on the feed</span>
+      <h2>Платье Мэри Линкольн: картинку с&nbsp;чужого сайта виджет запрашивает без конца</h2>
+      <span class="status workaround">На&nbsp;главной обходное решение</span>
     </div>
-    <div class="meta">AI Try-On · found 5 Oct 2026 · the feed uses a local copy of the image</div>
+    <div class="meta">AI-примерка · 5&nbsp;октября 2026 · на&nbsp;главной стоит копия картинки с&nbsp;нашего сайта</div>
 
-    <h3>What happens</h3>
-    <p>With <code>-product-image-src</code> pointing to the Smithsonian image server, the widget requests the image over and over: more than 100 identical requests in about 10 seconds, each answered 200 OK, until the browser stalls. With the same picture served from this site, there is a single request and the try-on opens normally.</p>
+    <h3>Что происходит</h3>
+    <p>Если в&nbsp;<code>-product-image-src</code> стоит ссылка на&nbsp;сервер изображений Смитсоновского музея, виджет запрашивает картинку снова и&nbsp;снова: больше 100 одинаковых запросов примерно за&nbsp;10 секунд. Сервер на&nbsp;каждый отвечает 200&nbsp;OK, но&nbsp;запросы не&nbsp;прекращаются, пока вкладка не&nbsp;зависнет. Та&nbsp;же картинка с&nbsp;нашего сайта запрашивается один раз, и&nbsp;примерка открывается нормально.</p>
 
-    <h3>Remote image</h3>
-    <p><a class="u" href="https://ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065">ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065</a>, 800 × 1065 px JPEG</p>
+    <h3>Картинка на&nbsp;чужом сайте</h3>
+    <p><a class="u" href="https://ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065">ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065</a>, JPEG 800&nbsp;× 1065&nbsp;px</p>
 
-    <h3>Reproduce</h3>
+    <h3>Воспроизвести</h3>
     <div class="triggers">
       <button class="trig" type="button" id="dress-remote"
         data-neurodyn-ai-try-on-dialog
@@ -152,7 +153,7 @@
         data-neurodyn-ai-try-on-product-image-src="https://ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065"
         data-neurodyn-ai-try-on-product-url=""
         data-neurodyn-ai-try-on-language="en"
-        data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3">Remote image (bug)</button>
+        data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3">Картинка музея (ошибка)</button>
       <button class="trig alt" type="button" id="dress-local"
         data-neurodyn-ai-try-on-dialog
         data-neurodyn-ai-try-on-product-type="full-body"
@@ -160,21 +161,21 @@
         data-neurodyn-ai-try-on-product-image-src="../try/mary-lincoln-dress.jpg"
         data-neurodyn-ai-try-on-product-url=""
         data-neurodyn-ai-try-on-language="en"
-        data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3">Local image (works)</button>
+        data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3">Наша копия (работает)</button>
     </div>
-    <p class="warn">The remote-image button can freeze the tab. Watch the Network panel in DevTools.</p>
+    <p class="warn">Кнопка с&nbsp;картинкой музея может подвесить вкладку. Смотреть во&nbsp;вкладке Network в&nbsp;DevTools.</p>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>Vizbl feed · debug</span>
-    <a href="../">Back to the feed</a>
+    <span>Лента Vizbl · отладка</span>
+    <a href="../">В ленту</a>
   </div>
 </footer>
 
 <script>
-// Same as on the feed: absolute links for the widgets.
+// Как на главной: виджетам нужны абсолютные ссылки.
 document.querySelectorAll('[data-neurodyn-room-viewer-src],[data-neurodyn-ai-try-on-product-image-src]').forEach(el => {
   ['data-neurodyn-room-viewer-src', 'data-neurodyn-ai-try-on-product-image-src'].forEach(a => {
     if (el.hasAttribute(a)) el.setAttribute(a, new URL(el.getAttribute(a), location.href).href);
