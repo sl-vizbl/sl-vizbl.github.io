@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bring history home — Vizbl</title>
-<meta name="description" content="Historic pieces from the Vizbl Instagram. Tap any post to see how the piece could look in your home.">
+<meta name="description" content="Historic pieces from the Vizbl Instagram. Tap any post to try the piece in your home, or on yourself.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bring history home — Vizbl">
-<meta property="og:description" content="Tap any post to see how the piece could look in your home.">
-<meta property="og:image" content="posts/king-carpet-cover.jpg">
+<meta property="og:description" content="Tap any post to try the piece in your home, or on yourself.">
+<meta property="og:image" content="posts/icebergs-cover.jpg">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,7 @@
 
 <!-- Vizbl widget scripts: one per integration type used in the feed -->
 <script defer src="https://cdn.neurodyn.ai/@neurodyn/room-viewer/dist/room-viewer.embed.min.js"></script>
+<script defer src="https://cdn.neurodyn.ai/@neurodyn/ai-try-on/dist/ai-try-on.embed.min.js"></script>
 </head>
 <body>
 
@@ -37,32 +38,50 @@
     <div class="caption">From the Vizbl Instagram<span>Newest post first</span></div>
     <div>
       <h1>Bring history home</h1>
-      <p class="lede">Tap any post to see how the piece could look in your home.</p>
+      <p class="lede">Tap any post to try the piece in your home, or on yourself.</p>
     </div>
   </div>
 
   <div class="merchant">
     <div><b>Have an online store? Add this try-on to it.</b><span>Shoppers see how your product looks in their home before they buy.</span></div>
-    <a class="btn btn-light" href="https://connect.vizbl.com/register">Start free</a>
+    <a class="btn btn-light" href="https://vizbl.com/apps">Start free</a>
   </div>
 </section>
 
 <!--
   FEED — same order as the Instagram grid, newest post first.
-  Each post is one Vizbl integration: the tile itself is the trigger.
+  Each post opens one Vizbl integration. Usually the tile itself is the trigger:
+  paste the attributes from the cabinet's "Get code" snippet onto the <button class="post">.
+
+  A piece with several sizes: the tile gets data-sizes="<sheet id>" and opens a size
+  sheet (after </main>); each option in the sheet is its own Vizbl trigger.
+  Wall Art sizes go in metres, the widget's default unit (dimension-unit is unconfirmed).
 
   data-pending = the try-on is not published yet; a tap shows a "coming soon" note.
-  To go live, delete data-pending and paste the attributes from the cabinet's
-  "Get code" snippet onto the <button>, e.g. for a rug:
-    data-neurodyn-room-viewer-dialog
-    data-neurodyn-room-viewer-type="rugs"
-    data-neurodyn-room-viewer-tinuuid="…"
-    data-neurodyn-room-viewer-name="…"
-    data-neurodyn-room-viewer-language="en"
-    data-neurodyn-room-viewer-api-key="…"
 -->
 <main class="wrap feed-wrap">
   <div class="feed">
+
+    <button class="post" type="button" data-sizes="icebergs-sizes" aria-haspopup="dialog"
+      aria-label="A century out of sight. Try The Icebergs by Frederic Edwin Church on your wall">
+      <img src="posts/icebergs-cover.jpg" alt="A century out of sight: The Icebergs by Frederic Edwin Church, 1861">
+      <span class="kind" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 15l5-4 4 3 3-2 6 4"/></svg></span>
+      <span class="try"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7.5" y="7.5" width="9" height="9" rx="1"/></svg>Try this painting</span>
+    </button>
+
+    <button class="post" id="mary-lincoln-dress" type="button"
+      data-neurodyn-ai-try-on-dialog
+      data-neurodyn-ai-try-on-product-type="full-body"
+      data-neurodyn-ai-try-on-product-name="Mary Lincoln's purple velvet dress"
+      data-neurodyn-ai-try-on-product-image-src="try/mary-lincoln-dress.jpg"
+      data-neurodyn-ai-try-on-product-url=""
+      data-neurodyn-ai-try-on-language="en"
+      data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3"
+      aria-label="Mary Lincoln gave this dress away. Try on a digital version of the dress">
+      <img src="posts/mary-lincoln-cover.jpg" alt="Mary Lincoln gave this dress away: her purple velvet dress, preserved at the Smithsonian">
+      <span class="kind" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6.5a2 2 0 1 1 2.6 1.9c-.4.1-.6.5-.6.9V10"/><path d="M12 10 3.4 16.2A1 1 0 0 0 4 18h16a1 1 0 0 0 .6-1.8z"/></svg></span>
+      <span class="try"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7.5" y="7.5" width="9" height="9" rx="1"/></svg>Try on this dress</span>
+    </button>
 
     <button class="post" type="button"
       data-neurodyn-room-viewer-dialog
@@ -78,11 +97,43 @@
       <span class="try"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7.5" y="7.5" width="9" height="9" rx="1"/></svg>Try this carpet</span>
     </button>
 
-    <div class="soon" aria-hidden="true">Next story soon</div>
-    <div class="soon" aria-hidden="true">Next story soon</div>
-
   </div>
 </main>
+
+<!-- Size sheet for The Icebergs: each option is a separate Wall Art trigger -->
+<div class="sheet" id="icebergs-sizes" aria-hidden="true">
+  <div class="sheet-backdrop" data-close></div>
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="icebergs-sizes-title">
+    <div class="sheet-caption">The Icebergs · Frederic Edwin Church, 1861</div>
+    <h2 id="icebergs-sizes-title">Pick a size</h2>
+
+    <button class="size-opt" type="button"
+      data-neurodyn-room-viewer-dialog
+      data-neurodyn-room-viewer-type="wallart"
+      data-neurodyn-room-viewer-src="try/icebergs.jpg"
+      data-neurodyn-room-viewer-name="The Icebergs, original size"
+      data-neurodyn-room-viewer-width="2.858"
+      data-neurodyn-room-viewer-height="1.638"
+      data-neurodyn-room-viewer-language="en"
+      data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">
+      <b>Original size</b><span>64½&nbsp;× 112½&nbsp;in, the canvas in the Dallas Museum of Art</span>
+    </button>
+
+    <button class="size-opt" type="button"
+      data-neurodyn-room-viewer-dialog
+      data-neurodyn-room-viewer-type="wallart"
+      data-neurodyn-room-viewer-src="try/icebergs.jpg"
+      data-neurodyn-room-viewer-name="The Icebergs, 24 × 42 in print"
+      data-neurodyn-room-viewer-width="1.067"
+      data-neurodyn-room-viewer-height="0.61"
+      data-neurodyn-room-viewer-language="en"
+      data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">
+      <b>Print</b><span>24&nbsp;× 42&nbsp;in, a size for a living room wall</span>
+    </button>
+
+    <button class="sheet-cancel" type="button" data-close>Cancel</button>
+  </div>
+</div>
 
 <footer>
   <div class="wrap">
@@ -94,6 +145,35 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
+// Widgets get absolute links, so they work on localhost and after deployment alike.
+document.querySelectorAll('[data-neurodyn-room-viewer-src],[data-neurodyn-ai-try-on-product-image-src]').forEach(el => {
+  ['data-neurodyn-room-viewer-src', 'data-neurodyn-ai-try-on-product-image-src'].forEach(a => {
+    if (el.hasAttribute(a)) el.setAttribute(a, new URL(el.getAttribute(a), location.href).href);
+  });
+});
+document.getElementById('mary-lincoln-dress').setAttribute('data-neurodyn-ai-try-on-product-url', location.href);
+
+// Size sheets: a tile with data-sizes opens its sheet; picking a size hands over to Vizbl.
+let openSheet = null;
+function closeSheet() {
+  if (!openSheet) return;
+  openSheet.classList.remove('open');
+  openSheet.setAttribute('aria-hidden', 'true');
+  openSheet = null;
+}
+document.addEventListener('click', e => {
+  const tile = e.target.closest('.post[data-sizes]');
+  if (tile) {
+    openSheet = document.getElementById(tile.dataset.sizes);
+    openSheet.classList.add('open');
+    openSheet.setAttribute('aria-hidden', 'false');
+    openSheet.querySelector('.size-opt').focus({ preventScroll: true });
+    return;
+  }
+  if (e.target.closest('[data-close], .size-opt')) closeSheet();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+
 // Try-ons that are not published yet: tell the visitor instead of doing nothing.
 const toast = document.getElementById('toast');
 let hideTimer;
