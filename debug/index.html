@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Debug — Vizbl feed</title>
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="preload" href="../assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/feed.css">
+<style>
+  .intro{padding-bottom:24px}
+  .case{border-top:1px solid var(--line);padding-top:28px;padding-bottom:36px}
+  .case-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .case h2{font-size:24px;line-height:1.15;letter-spacing:-.03em;font-weight:600;color:var(--ink)}
+  .status{font-size:12px;font-weight:600;border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .status.open{background:#fdecec;color:#a11d1d}
+  .status.workaround{background:#fff4dc;color:#8a5a00}
+  .meta{font-size:12px;color:var(--muted);margin-top:4px}
+  .case h3{font-size:13px;font-weight:600;color:var(--ink);margin:20px 0 6px}
+  .case p,.case li{font-size:14.5px;line-height:1.5;max-width:70ch}
+  .case ol,.case ul{padding-left:20px}
+  .case li{margin-bottom:4px}
+  table{border-collapse:collapse;font-size:13px;width:100%;max-width:760px}
+  th,td{text-align:left;border-bottom:1px solid var(--line);padding:7px 10px 7px 0;vertical-align:top}
+  th{font-weight:600;color:var(--muted)}
+  code,pre{font-family:ui-monospace,SFMono-Regular,'JetBrains Mono',Menlo,Consolas,monospace;font-size:12.5px}
+  code{background:#f4f4f4;border-radius:4px;padding:1px 5px}
+  pre{background:#f6f6f6;border:1px solid var(--line);border-radius:8px;padding:14px;overflow-x:auto;line-height:1.45;max-width:760px}
+  .triggers{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+  .trig{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer}
+  .trig.alt{background:#fff;color:var(--ink)}
+  .warn{font-size:13px;color:#8a5a00;margin-top:8px}
+  a.u{text-decoration:underline;text-underline-offset:2px}
+  @media (max-width:640px){
+    .case h2{font-size:21px}
+    th,td{padding-right:6px}
+  }
+</style>
+
+<script defer src="https://cdn.neurodyn.ai/@neurodyn/room-viewer/dist/room-viewer.embed.min.js"></script>
+<script defer src="https://cdn.neurodyn.ai/@neurodyn/ai-try-on/dist/ai-try-on.embed.min.js"></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a href="../"><img src="../assets/vizbl-logo.svg" alt="Vizbl" width="386" height="116"></a>
+    <a class="back" href="../">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      Back to the feed
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <div class="caption">Internal page<span>Not linked from the feed, not indexed</span></div>
+    <div>
+      <h1>Debug</h1>
+      <p class="lede">Integrations that misbehave on the feed. Each case keeps the exact trigger, so it can be reproduced here.</p>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <section class="case" id="icebergs-ar-rotation">
+    <div class="case-head">
+      <h2>The Icebergs: lies flat in AR</h2>
+      <span class="status open">Open</span>
+    </div>
+    <div class="meta">Wall Art · reported 5 Oct 2026 · hidden from the feed until fixed</div>
+
+    <h3>What happens</h3>
+    <p>In AR the painting is rotated 90° around the X axis: it lies flat, like a tabletop, instead of hanging on the wall. The 2D widget (scenes, room photo) shows it correctly.</p>
+
+    <h3>Where</h3>
+    <ul>
+      <li>Device and OS: <i>to add</i></li>
+      <li>AR viewer (iOS Quick Look or Android Scene Viewer): <i>to add</i></li>
+      <li>Both sizes or one of them: <i>to add</i></li>
+    </ul>
+
+    <h3>What the page sends</h3>
+    <table>
+      <tr><th>Attribute</th><th>Original size</th><th>Print</th></tr>
+      <tr><td><code>-type</code></td><td><code>wallart</code></td><td><code>wallart</code></td></tr>
+      <tr><td><code>-width</code></td><td><code>2.858</code> (112½ in)</td><td><code>1.067</code> (42 in)</td></tr>
+      <tr><td><code>-height</code></td><td><code>1.638</code> (64½ in)</td><td><code>0.61</code> (24 in)</td></tr>
+      <tr><td>units</td><td colspan="2">metres, the default; <code>-dimension-unit</code> is not sent</td></tr>
+      <tr><td><code>-src</code></td><td colspan="2"><a class="u" href="../try/icebergs.jpg">try/icebergs.jpg</a>, 2800 × 1568 px, landscape, no frame (made absolute by the page script)</td></tr>
+      <tr><td><code>-api-key</code></td><td colspan="2"><code>pk_live_cx0D…bL-c</code></td></tr>
+    </table>
+    <p class="meta" style="margin-top:8px">Nothing on the page sets orientation or placement: wall vs. floor is decided when the widget launches AR.</p>
+
+    <h3>Reproduce</h3>
+    <div class="triggers">
+      <button class="trig" type="button"
+        data-neurodyn-room-viewer-dialog
+        data-neurodyn-room-viewer-type="wallart"
+        data-neurodyn-room-viewer-src="../try/icebergs.jpg"
+        data-neurodyn-room-viewer-name="The Icebergs, original size"
+        data-neurodyn-room-viewer-width="2.858"
+        data-neurodyn-room-viewer-height="1.638"
+        data-neurodyn-room-viewer-language="en"
+        data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">Original size</button>
+      <button class="trig alt" type="button"
+        data-neurodyn-room-viewer-dialog
+        data-neurodyn-room-viewer-type="wallart"
+        data-neurodyn-room-viewer-src="../try/icebergs.jpg"
+        data-neurodyn-room-viewer-name="The Icebergs, 24 × 42 in print"
+        data-neurodyn-room-viewer-width="1.067"
+        data-neurodyn-room-viewer-height="0.61"
+        data-neurodyn-room-viewer-language="en"
+        data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">Print, 24 × 42 in</button>
+    </div>
+    <p class="meta" style="margin-top:8px">Open on a phone, then “View in place”.</p>
+
+    <h3>Trigger code (original size)</h3>
+<pre>&lt;button type="button"
+  data-neurodyn-room-viewer-dialog
+  data-neurodyn-room-viewer-type="wallart"
+  data-neurodyn-room-viewer-src="https://sl-vizbl.github.io/try/icebergs.jpg"
+  data-neurodyn-room-viewer-name="The Icebergs, original size"
+  data-neurodyn-room-viewer-width="2.858"
+  data-neurodyn-room-viewer-height="1.638"
+  data-neurodyn-room-viewer-language="en"
+  data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c"&gt;
+  Original size
+&lt;/button&gt;</pre>
+  </section>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <section class="case" id="dress-remote-image-loop">
+    <div class="case-head">
+      <h2>Mary Lincoln's dress: remote image re-requested endlessly</h2>
+      <span class="status workaround">Workaround on the feed</span>
+    </div>
+    <div class="meta">AI Try-On · found 5 Oct 2026 · the feed uses a local copy of the image</div>
+
+    <h3>What happens</h3>
+    <p>With <code>-product-image-src</code> pointing to the Smithsonian image server, the widget requests the image over and over: more than 100 identical requests in about 10 seconds, each answered 200 OK, until the browser stalls. With the same picture served from this site, there is a single request and the try-on opens normally.</p>
+
+    <h3>Remote image</h3>
+    <p><a class="u" href="https://ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065">ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065</a>, 800 × 1065 px JPEG</p>
+
+    <h3>Reproduce</h3>
+    <div class="triggers">
+      <button class="trig" type="button" id="dress-remote"
+        data-neurodyn-ai-try-on-dialog
+        data-neurodyn-ai-try-on-product-type="full-body"
+        data-neurodyn-ai-try-on-product-name="Mary Lincoln's purple velvet dress (remote image)"
+        data-neurodyn-ai-try-on-product-image-src="https://ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065"
+        data-neurodyn-ai-try-on-product-url=""
+        data-neurodyn-ai-try-on-language="en"
+        data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3">Remote image (bug)</button>
+      <button class="trig alt" type="button" id="dress-local"
+        data-neurodyn-ai-try-on-dialog
+        data-neurodyn-ai-try-on-product-type="full-body"
+        data-neurodyn-ai-try-on-product-name="Mary Lincoln's purple velvet dress (local image)"
+        data-neurodyn-ai-try-on-product-image-src="../try/mary-lincoln-dress.jpg"
+        data-neurodyn-ai-try-on-product-url=""
+        data-neurodyn-ai-try-on-language="en"
+        data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3">Local image (works)</button>
+    </div>
+    <p class="warn">The remote-image button can freeze the tab. Watch the Network panel in DevTools.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Vizbl feed · debug</span>
+    <a href="../">Back to the feed</a>
+  </div>
+</footer>
+
+<script>
+// Same as on the feed: absolute links for the widgets.
+document.querySelectorAll('[data-neurodyn-room-viewer-src],[data-neurodyn-ai-try-on-product-image-src]').forEach(el => {
+  ['data-neurodyn-room-viewer-src', 'data-neurodyn-ai-try-on-product-image-src'].forEach(a => {
+    if (el.hasAttribute(a)) el.setAttribute(a, new URL(el.getAttribute(a), location.href).href);
+  });
+});
+document.querySelectorAll('[data-neurodyn-ai-try-on-product-url]').forEach(el =>
+  el.setAttribute('data-neurodyn-ai-try-on-product-url', location.href));
+</script>
+</body>
+</html>
