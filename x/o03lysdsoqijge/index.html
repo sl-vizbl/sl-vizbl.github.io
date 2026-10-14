@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Linear Pendant — OVERHEAD</title>
+<meta name="theme-color" content="#1f1f1f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💡</text></svg>">
+<link rel="stylesheet" href="css/overhead-theme.css?v=1.0.0">
+
+<!--
+  Recording page for the LinkedIn lighting post (AR on an iPhone over a dining table).
+  No set-dressing analytics: chat bubbles and review widgets would end up in the shot.
+
+  Products live in the PRODUCTS list at the bottom. Open one with
+  lamps-demo.html?p=<id>; without ?p the first one opens.
+  Add ?before (or &before) for the same page without the AR button.
+-->
+
+<script defer src="https://cdn.neurodyn.ai/@neurodyn/core-ar/dist/core-ar.embed.min.js"></script>
+</head>
+<body>
+
+<div class="topbar">Free shipping on lighting over $250 · Bulbs included</div>
+
+<header>
+  <div class="wrap hrow">
+    <div class="logo">OVER<span>/</span>HEAD</div>
+    <nav>
+      <a href="#">Pendants</a><a href="#">Chandeliers</a><a href="#">Ceiling</a><a href="#">Wall</a><a href="#">Bulbs</a>
+    </nav>
+    <div class="hactions"><a href="#">Search</a><a href="#">Account</a><a href="#" class="cart-link">Cart (<b id="cartcount">0</b>)</a></div>
+  </div>
+</header>
+
+<div class="wrap crumbs">
+  <a href="#">Home</a> / <a href="#">Pendants</a> / <span id="crumb"></span>
+</div>
+
+<main class="wrap product">
+  <figure class="gallery">
+    <img class="main" id="photo" src="" alt="">
+    <div class="thumbs" id="thumbs"></div>
+  </figure>
+
+  <section>
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="title"></h1>
+    <div class="rating"><span class="stars">★★★★★</span> <span id="rating"></span></div>
+
+    <div class="pricerow">
+      <span class="price" id="price"></span>
+    </div>
+
+    <p class="blurb" id="blurb"></p>
+
+    <dl class="dims" id="dims"></dl>
+
+    <div id="finishes" hidden>
+      <div class="optlabel">Finish <small id="finishname"></small></div>
+      <div class="pills" id="finishpills"></div>
+    </div>
+
+    <div class="buy" id="buy">
+      <button class="btn-cart" id="addcart">Add to cart</button>
+    </div>
+
+    <div class="perks">
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="6" width="14" height="11" rx="1"/><path d="M15 9h4l3 4v4h-7"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg> Ships in 2–4 days, bulbs included</div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18.4 5.6l-2.1 2.1M21 12h-3"/><circle cx="12" cy="14" r="4"/></svg> Dimmable, adjustable cord length</div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg> 30-day returns</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap frow">
+    <div>© 2026 OVERHEAD — Demo storefront</div>
+    <div>Shipping · Returns · Installation · Contact</div>
+  </div>
+</footer>
+
+<script>
+// One entry per fixture in Vizbl Core AR.
+// objectId, apiKey and variant ids come from the widget code in the cabinet.
+// Dimensions must match the model, otherwise the page and the AR scene disagree on camera.
+const PRODUCTS = [
+  {
+    id: 'linear5',
+    name: 'Linear Pendant, 5 Lights',
+    eyebrow: 'Pendants · Smoked glass',
+    rating: '4.8 · 96 reviews',
+    price: '$689',
+    blurb: 'Three smoked-glass cylinders and two matte-black spots on one slim canopy. Made for a six-seat table: light on the plates, none in your eyes.',
+    photos: ['images/lamp-3.jpg', 'images/lamp-1.jpg', 'images/lamp-2.jpg'],
+    // Bounding box of the model, written exactly as the Vizbl viewer shows it in inches.
+    dims: [
+      { label: 'Width', value: '47.24 in' },
+      { label: 'Drop', value: '34.76 in' },
+      { label: 'Depth', value: '5.67 in' },
+    ],
+    apiKey: 'pk_live_mAr6waFo8gklGuD6qzhaoo3dP7TAWsfO',
+    objectId: 'PT1Z5GB-Tly0kQdM-DD6wQ',
+    // Add more finishes from the cabinet and the page shows a picker; the AR button follows it.
+    // A variant without an id stays off the page until the id is filled in.
+    variants: [
+      { label: 'Black', id: 'e44b2526' },
+      { label: 'Gold', id: '' },
+    ].filter(v => v.id),
+  },
+];
+
+const params = new URLSearchParams(location.search);
+const p = PRODUCTS.find(x => x.id === params.get('p')) || PRODUCTS[0];
+
+document.title = `${p.name} — OVERHEAD`;
+document.getElementById('crumb').textContent = p.name;
+document.getElementById('eyebrow').textContent = p.eyebrow;
+document.getElementById('title').textContent = p.name;
+document.getElementById('rating').textContent = p.rating;
+document.getElementById('price').textContent = p.price;
+document.getElementById('blurb').textContent = p.blurb;
+
+const photo = document.getElementById('photo');
+photo.alt = `${p.name} over a dining table`;
+const thumbs = document.getElementById('thumbs');
+const show = (src, btn) => {
+  photo.src = src;
+  thumbs.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+};
+p.photos.forEach((src, i) => {
+  const b = document.createElement('button');
+  b.innerHTML = `<img src="${src}" alt="">`;
+  b.addEventListener('click', () => show(src, b));
+  thumbs.append(b);
+  if (i === 0) show(src, b);
+});
+
+document.getElementById('dims').innerHTML =
+  p.dims.map(d => `<div><dt>${d.label}</dt><dd>${d.value}</dd></div>`).join('');
+
+// The AR trigger is built here, before the deferred Core AR script runs.
+// A finish change swaps in a fresh element, since the widget reads its attributes once.
+const buy = document.getElementById('buy');
+let ar = null;
+const mountAR = v => {
+  if (params.has('before')) return;
+  const el = document.createElement('vizbl-core');
+  el.setAttribute('api-key', p.apiKey);
+  el.setAttribute('type', 'ar-viewer');
+  el.setAttribute('object-id', p.objectId);
+  el.setAttribute('variant-id', v.id);
+  el.setAttribute('unstyled', '');
+  el.setAttribute('trigger-class', 'btn-cart secondary');
+  el.textContent = 'See it over your table';
+  ar ? ar.replaceWith(el) : buy.append(el);
+  ar = el;
+};
+
+let variant = p.variants[0];
+if (p.variants.length > 1) {
+  document.getElementById('finishes').hidden = false;
+  const pills = document.getElementById('finishpills');
+  const name = document.getElementById('finishname');
+  p.variants.forEach((v, i) => {
+    const pill = document.createElement('button');
+    pill.className = 'pill' + (i === 0 ? ' active' : '');
+    pill.textContent = v.label;
+    pill.addEventListener('click', () => {
+      pills.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
+      pill.classList.add('active');
+      variant = v;
+      name.textContent = `— ${v.label}`;
+      mountAR(v);
+    });
+    pills.append(pill);
+  });
+  name.textContent = `— ${variant.label}`;
+}
+mountAR(variant);
+
+const cart = document.getElementById('addcart');
+const cartLabel = () => cart.textContent = `Add to cart — ${p.price}`;
+cartLabel();
+let inCart = 0;
+cart.addEventListener('click', () => {
+  document.getElementById('cartcount').textContent = ++inCart;
+  cart.textContent = 'Added to cart ✓';
+  setTimeout(cartLabel, 1600);
+});
+</script>
+</body>
+</html>
