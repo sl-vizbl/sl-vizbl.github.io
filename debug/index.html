@@ -32,6 +32,10 @@
   .trig{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer}
   .trig.alt{background:#fff;color:var(--ink)}
   a.u{text-decoration:underline;text-underline-offset:2px}
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:760px;margin-top:14px}
+  .shots img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block}
+  .shots figcaption{font-size:12px;color:var(--muted);margin-top:4px}
+  @media (max-width:640px){.shots{grid-template-columns:1fr}}
   @media (max-width:640px){
     .case h2{font-size:21px}
     th,td{padding-right:6px}
@@ -162,6 +166,98 @@
         data-neurodyn-ai-try-on-language="en"
         data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3">Наша копия (работает)</button>
     </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <section class="case" id="room-viewer-frame-after-poster">
+    <div class="case-head">
+      <h2>Ковёр и&nbsp;пол после картины: вместо товара виджет показывает раму</h2>
+      <span class="status open">Открыт</span>
+    </div>
+    <div class="meta">Room-viewer: картина → ковёр или пол на&nbsp;одной странице · 24&nbsp;ноября 2026 · мешает демо-магазину на&nbsp;промо /shopify-ar</div>
+
+    <h3>Что происходит</h3>
+    <p>На&nbsp;одной странице открываем картину, выбираем интерьер, закрываем виджет. Потом открываем ковёр или пол&nbsp;— и&nbsp;виджет показывает не&nbsp;тот товар. На&nbsp;полу стоит рама <code>Frame_Brown</code>, у&nbsp;товара подпись «Replace rug» (или «Replace flooring»), в&nbsp;шапке профиль «Igor». Виджет загружает ковёр, но&nbsp;следом снова запрашивает раму, которую грузил для картины, и&nbsp;показывает её.</p>
+    <p>На&nbsp;свежей странице ковёр открывается правильно: шапка с&nbsp;названием аккаунта ковра, ковёр в&nbsp;комнате, переключатель размера. Ковёр, а&nbsp;за&nbsp;ним пол&nbsp;— тоже правильно. Ломает только картина, открытая раньше.</p>
+    <div class="shots">
+      <figure><img src="frame-after-poster-broken.jpg" alt="Ковёр открыт после картины: на полу рама Frame_Brown, в шапке профиль Igor" width="1200" height="750" loading="lazy"><figcaption>Ковёр после картины: рама Frame_Brown, профиль «Igor»</figcaption></figure>
+      <figure><img src="frame-after-poster-ok.jpg" alt="Тот же ковёр на свежей странице: полосатый ковёр в гостиной, профиль Vizbl Samples" width="1200" height="750" loading="lazy"><figcaption>Тот же ковёр на свежей странице</figcaption></figure>
+    </div>
+    <p class="meta">Скриншоты сняты на&nbsp;локальной вёрстке /shopify-ar, кнопки vizbl.com без ключа (код внизу).</p>
+
+    <h3>Где воспроизводится</h3>
+    <ul>
+      <li>Скрипт: <code>cdn.neurodyn.ai/@neurodyn/room-viewer/dist/room-viewer.embed.min.js</code></li>
+      <li>Компьютер, Edge (Chromium), 2D-режим с&nbsp;готовым интерьером</li>
+      <li>Картина в&nbsp;режиме <code>poster</code>, как в&nbsp;живом демо на&nbsp;vizbl.com/wallart</li>
+    </ul>
+
+    <h3>Шаги</h3>
+    <ol>
+      <li>Нажать «1.&nbsp;Картина», выбрать любой интерьер, закрыть виджет.</li>
+      <li>Нажать «2.&nbsp;Ковёр» (или «3.&nbsp;Пол») и&nbsp;выбрать интерьер: вместо товара рама, в&nbsp;шапке «Igor».</li>
+      <li>Для сравнения: обновить страницу и&nbsp;сразу нажать «2.&nbsp;Ковёр» — всё правильно.</li>
+    </ol>
+
+    <h3>Воспроизвести</h3>
+    <div class="triggers">
+      <button class="trig" type="button" id="frame-poster"
+        data-neurodyn-room-viewer-dialog
+        data-neurodyn-room-viewer-type="poster"
+        data-neurodyn-room-viewer-src="../try/icebergs.jpg"
+        data-neurodyn-room-viewer-name="The Icebergs, 24 × 42 in print"
+        data-neurodyn-room-viewer-width="1.067"
+        data-neurodyn-room-viewer-height="0.61"
+        data-neurodyn-room-viewer-dimension-unit="m"
+        data-neurodyn-room-viewer-language="en"
+        data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">1. Картина</button>
+      <button class="trig alt" type="button" id="frame-rug"
+        data-neurodyn-room-viewer-dialog
+        data-neurodyn-room-viewer-type="rugs"
+        data-neurodyn-room-viewer-tinuuid="v4uxwiK6RIm5TCEspLhWOw"
+        data-neurodyn-room-viewer-name="Rug"
+        data-neurodyn-room-viewer-display-unit="in"
+        data-neurodyn-room-viewer-language="en"
+        data-neurodyn-room-viewer-api-key="pk_live_s_33HE1BP6eBO3y5tQ01O3pAdgVH88FG">2. Ковёр</button>
+      <button class="trig alt" type="button" id="frame-floor"
+        data-neurodyn-room-viewer-dialog
+        data-neurodyn-room-viewer-type="flooring"
+        data-neurodyn-room-viewer-tinuuid="VoPNQD6mRRyLIg88cj1Thw"
+        data-neurodyn-room-viewer-name="Chevron Laminate, Natural Oak"
+        data-neurodyn-room-viewer-language="en"
+        data-neurodyn-room-viewer-api-key="pk_live_k3xcnQOX6I_6zbE6_Aa7RBlextkxuGWL">3. Пол</button>
+    </div>
+
+    <h3>Что видно в&nbsp;сети</h3>
+    <table>
+      <tr><th>Действие</th><th>Запросы <code>api.neurodyn.ai/catalog/object</code></th></tr>
+      <tr><td>Открыть картину</td><td>пять рам: <code>Frame_Brown</code> (<code>RcSd3KphTyq_JQEjNCqKQA</code>), <code>Frame_White</code>, <code>Frame_Black</code>, <code>Frame_Gold</code>, <code>Frame_Metal</code></td></tr>
+      <tr><td>Потом открыть ковёр</td><td>сначала сам ковёр, следом снова <code>Frame_Brown</code> (<code>RcSd3KphTyq_JQEjNCqKQA</code>). В&nbsp;сцене и&nbsp;в&nbsp;карточке товара&nbsp;— рама</td></tr>
+      <tr><td>Ковёр на&nbsp;свежей странице</td><td>только ковёр, рам нет</td></tr>
+    </table>
+    <p class="meta" style="margin-top:8px">Похоже, состояние картины (выбранная рама и&nbsp;профиль её&nbsp;аккаунта) не&nbsp;сбрасывается между открытиями диалога.</p>
+
+    <h3>Где мешает</h3>
+    <p>Демо-магазин на&nbsp;промо /shopify-ar: пять товаров на&nbsp;одной странице, у&nbsp;картины, ковра и&nbsp;пола свои кнопки room-viewer. У&nbsp;магазинов&nbsp;— везде, где картину и&nbsp;ковёр открывают на&nbsp;одной странице без перезагрузки: быстрый просмотр в&nbsp;каталоге, темы с&nbsp;подгрузкой страниц. С&nbsp;одним приложением VIZBL для Shopify на&nbsp;все решения таких магазинов станет больше.</p>
+
+    <h3>Код кнопок на&nbsp;vizbl.com (без ключа)</h3>
+<pre>&lt;button type="button"
+  data-neurodyn-room-viewer-dialog
+  data-neurodyn-room-viewer-type="poster"
+  data-neurodyn-room-viewer-name="Deco Sunset"
+  data-neurodyn-room-viewer-src="https://vizbl.com/…/deco-sunset.jpg"
+  data-neurodyn-room-viewer-width="0.610"
+  data-neurodyn-room-viewer-height="0.914"
+  data-neurodyn-room-viewer-dimension-unit="m"
+  data-neurodyn-room-viewer-language="en"&gt;See it on your wall&lt;/button&gt;
+
+&lt;button type="button"
+  data-neurodyn-room-viewer-dialog
+  data-neurodyn-room-viewer-type="rugs"
+  data-neurodyn-room-viewer-tinuuid="yk0nXGFTTueFOgnBrcSpeA"
+  data-neurodyn-room-viewer-name="Striped Rug"
+  data-neurodyn-room-viewer-display-unit="in"
+  data-neurodyn-room-viewer-language="en"&gt;Try in your room&lt;/button&gt;</pre>
   </section>
 </main>
 
