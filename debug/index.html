@@ -43,7 +43,6 @@
 </style>
 
 <script defer src="https://cdn.neurodyn.ai/@neurodyn/room-viewer/dist/room-viewer.embed.min.js"></script>
-<script defer src="https://cdn.neurodyn.ai/@neurodyn/ai-try-on/dist/ai-try-on.embed.min.js"></script>
 </head>
 <body>
 
@@ -62,111 +61,9 @@
     <div class="caption">Внутренняя страница<span>Ссылки из ленты нет, поисковики не индексируют</span></div>
     <div>
       <h1>Отладка</h1>
-      <p class="lede">Интеграции, которые сбоят в&nbsp;ленте. У&nbsp;каждого случая есть та&nbsp;же кнопка, что стояла на&nbsp;главной, чтобы ошибку можно было воспроизвести прямо здесь.</p>
+      <p class="lede">Сбои виджетов VIZBL. У&nbsp;каждого случая есть кнопки, чтобы воспроизвести ошибку прямо здесь.</p>
     </div>
   </div>
-
-  <!-- ─────────────────────────────────────────────── -->
-  <section class="case" id="icebergs-ar-rotation">
-    <div class="case-head">
-      <h2>«Айсберги»: в&nbsp;AR картина лежит</h2>
-      <span class="status open">Открыт</span>
-    </div>
-    <div class="meta">Настенный арт · 5&nbsp;октября 2026 · убрана с&nbsp;главной до&nbsp;исправления</div>
-
-    <h3>Что происходит</h3>
-    <p>В&nbsp;AR картина повёрнута на&nbsp;90° по&nbsp;оси X: лежит горизонтально, как столешница, а&nbsp;не&nbsp;висит на&nbsp;стене. В&nbsp;2D-виджете (сцены, фото своей комнаты) всё правильно.</p>
-
-    <h3>Где воспроизводится</h3>
-    <ul>
-      <li>ОС: iOS&nbsp;26.5.1</li>
-      <li>AR-просмотр: iOS Quick Look</li>
-      <li>Размер: оригинальный</li>
-    </ul>
-
-    <h3>Что передаёт страница</h3>
-    <table>
-      <tr><th>Атрибут</th><th>Оригинальный размер</th><th>Репродукция</th></tr>
-      <tr><td><code>-type</code></td><td><code>wallart</code></td><td><code>wallart</code></td></tr>
-      <tr><td><code>-width</code></td><td><code>2.858</code> (285,8&nbsp;см, 112½&nbsp;дюйма)</td><td><code>1.067</code> (106,7&nbsp;см, 42&nbsp;дюйма)</td></tr>
-      <tr><td><code>-height</code></td><td><code>1.638</code> (163,8&nbsp;см, 64½&nbsp;дюйма)</td><td><code>0.61</code> (61&nbsp;см, 24&nbsp;дюйма)</td></tr>
-      <tr><td>единицы</td><td colspan="2">метры, единица по&nbsp;умолчанию; <code>-dimension-unit</code> не&nbsp;передаётся</td></tr>
-      <tr><td><code>-src</code></td><td colspan="2"><a class="u" href="../try/icebergs.jpg">try/icebergs.jpg</a>, 2800&nbsp;× 1568&nbsp;px, горизонтальная, без рамы (скрипт страницы превращает путь в&nbsp;абсолютную ссылку)</td></tr>
-      <tr><td><code>-api-key</code></td><td colspan="2"><code>pk_live_cx0D…bL-c</code></td></tr>
-    </table>
-    <p class="meta" style="margin-top:8px">Ориентацию и&nbsp;размещение страница не&nbsp;задаёт: стену или пол выбирает виджет, когда запускает AR.</p>
-
-    <h3>Воспроизвести</h3>
-    <div class="triggers">
-      <button class="trig" type="button"
-        data-neurodyn-room-viewer-dialog
-        data-neurodyn-room-viewer-type="wallart"
-        data-neurodyn-room-viewer-src="../try/icebergs.jpg"
-        data-neurodyn-room-viewer-name="The Icebergs, original size"
-        data-neurodyn-room-viewer-width="2.858"
-        data-neurodyn-room-viewer-height="1.638"
-        data-neurodyn-room-viewer-language="en"
-        data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">Оригинальный размер</button>
-      <button class="trig alt" type="button"
-        data-neurodyn-room-viewer-dialog
-        data-neurodyn-room-viewer-type="wallart"
-        data-neurodyn-room-viewer-src="../try/icebergs.jpg"
-        data-neurodyn-room-viewer-name="The Icebergs, 24 × 42 in print"
-        data-neurodyn-room-viewer-width="1.067"
-        data-neurodyn-room-viewer-height="0.61"
-        data-neurodyn-room-viewer-language="en"
-        data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c">Репродукция 24&nbsp;× 42&nbsp;дюйма</button>
-    </div>
-    <p class="meta" style="margin-top:8px">Открыть с&nbsp;телефона и&nbsp;нажать «View in place».</p>
-
-    <h3>Код кнопки (оригинальный размер)</h3>
-<pre>&lt;button type="button"
-  data-neurodyn-room-viewer-dialog
-  data-neurodyn-room-viewer-type="wallart"
-  data-neurodyn-room-viewer-src="https://sl-vizbl.github.io/try/icebergs.jpg"
-  data-neurodyn-room-viewer-name="The Icebergs, original size"
-  data-neurodyn-room-viewer-width="2.858"
-  data-neurodyn-room-viewer-height="1.638"
-  data-neurodyn-room-viewer-language="en"
-  data-neurodyn-room-viewer-api-key="pk_live_cx0DQ8H7s33oIpRuWlkEp8huS0kdbL-c"&gt;
-  Original size
-&lt;/button&gt;</pre>
-  </section>
-
-  <!-- ─────────────────────────────────────────────── -->
-  <section class="case" id="dress-remote-image-loop">
-    <div class="case-head">
-      <h2>Платье Мэри Линкольн: картинку с&nbsp;чужого сайта виджет запрашивает без конца</h2>
-      <span class="status workaround">На&nbsp;главной обходное решение</span>
-    </div>
-    <div class="meta">AI-примерка · 5&nbsp;октября 2026 · на&nbsp;главной стоит копия картинки с&nbsp;нашего сайта</div>
-
-    <h3>Что происходит</h3>
-    <p>Если в&nbsp;<code>-product-image-src</code> стоит ссылка на&nbsp;сервер изображений Смитсоновского музея, виджет запрашивает картинку снова и&nbsp;снова: больше 100 одинаковых запросов примерно за&nbsp;10 секунд. Сервер на&nbsp;каждый отвечает 200&nbsp;OK, но&nbsp;запросы не&nbsp;прекращаются, пока вкладка не&nbsp;зависнет. Та&nbsp;же картинка с&nbsp;нашего сайта запрашивается один раз, и&nbsp;примерка открывается нормально.</p>
-
-    <h3>Картинка на&nbsp;чужом сайте</h3>
-    <p><a class="u" href="https://ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065">ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065</a>, JPEG 800&nbsp;× 1065&nbsp;px</p>
-
-    <h3>Воспроизвести</h3>
-    <div class="triggers">
-      <button class="trig" type="button" id="dress-remote"
-        data-neurodyn-ai-try-on-dialog
-        data-neurodyn-ai-try-on-product-type="full-body"
-        data-neurodyn-ai-try-on-product-name="Mary Lincoln's purple velvet dress (remote image)"
-        data-neurodyn-ai-try-on-product-image-src="https://ids.si.edu/ids/deliveryService?id=NMAH-2006-26070.002-000001&amp;max=1065"
-        data-neurodyn-ai-try-on-product-url=""
-        data-neurodyn-ai-try-on-language="en"
-        data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3">Картинка музея (ошибка)</button>
-      <button class="trig alt" type="button" id="dress-local"
-        data-neurodyn-ai-try-on-dialog
-        data-neurodyn-ai-try-on-product-type="full-body"
-        data-neurodyn-ai-try-on-product-name="Mary Lincoln's purple velvet dress (local image)"
-        data-neurodyn-ai-try-on-product-image-src="../try/mary-lincoln-dress.jpg"
-        data-neurodyn-ai-try-on-product-url=""
-        data-neurodyn-ai-try-on-language="en"
-        data-neurodyn-ai-try-on-api-key="pk_live_Z4N968aPngGtMtiMRtitqlrj5_PdQkZ3">Наша копия (работает)</button>
-    </div>
-  </section>
 
   <!-- ─────────────────────────────────────────────── -->
   <section class="case" id="room-viewer-frame-after-poster">
